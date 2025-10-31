@@ -1,0 +1,368 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "# **Organización y Reutilización: El Poder de las Funciones en Python**"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Piensa en las funciones como **mini-programas** o **recetas** dentro de tu código. Son bloques de código que encapsulan una tarea específica (como hornear un pastel o calcular un impuesto). Su superpoder es la **reutilización**: las defines una vez y las llamas miles de veces, lo que mantiene tu código limpio, organizado y eficiente."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### **1. La Definición Básica: `def`**"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Para crear una función usamos la palabra clave **`def`** (de *define*), seguida del nombre que elijas y un par de paréntesis. El código de la función siempre va *indentado* (sangrado) debajo de la definición."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 1,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "¡Sistema listo para operar!\n"
+     ]
+    }
+   ],
+   "source": [
+    "# Ejemplo: Una función simple para iniciar el sistema\n",
+    "def iniciar_sistema():\n",
+    "    print(\"¡Sistema listo para operar!\")\n",
+    "\n",
+    "# Para usarla (llamarla):\n",
+    "iniciar_sistema()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### **2. Parámetros: Datos de Entrada**"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Los parámetros (o argumentos) son la información que la función necesita para trabajar. Se colocan dentro de los paréntesis y actúan como **variables temporales** que la función utiliza al ser ejecutada."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 2,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Preparando correo para: sofia.gonzalez@ejemplo.com\n"
+     ]
+    }
+   ],
+   "source": [
+    "def enviar_correo(destinatario):\n",
+    "    print(f\"Preparando correo para: {destinatario}\")\n",
+    "    \n",
+    "enviar_correo(\"sofia.gonzalez@ejemplo.com\")\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### **3. Múltiples Parámetros**"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Puedes pasar tantos parámetros como necesites, simplemente sepáralos con comas."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 3,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Monto de la propina: $3.50. Total a pagar: $38.50\n"
+     ]
+    }
+   ],
+   "source": [
+    "# Ejemplo: Calcular una propina\n",
+    "def calcular_propina (cuenta_total, porcentaje_propina):\n",
+    "    propina = cuenta_total * (porcentaje_propina / 100)\n",
+    "    total_final = cuenta_total + propina\n",
+    "    print(f\"Monto de la propina: ${propina:.2f}. Total a pagar: ${total_final:.2f}\")\n",
+    "    \n",
+    "calcular_propina(35, 10)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### **4. Devolver Valores: `return`**"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "A diferencia de `print()` (que solo muestra algo en pantalla), la palabra clave **`return`** permite que la función te devuelva un resultado, el cual puedes almacenar en una variable o usar en otra parte del código. Es como la función termina su trabajo y te da el producto final."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 4,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "El precio final con impuestos es: 121.0\n"
+     ]
+    }
+   ],
+   "source": [
+    "def calcular_precio_final (precio_base, porcentaje_iva):\n",
+    "    # El 'return' da el resultado para usarlo fuera de la función\n",
+    "    iva = precio_base * (porcentaje_iva / 100)\n",
+    "    return precio_base + iva\n",
+    "    \n",
+    "# Almacenamos el valor devuelto\n",
+    "precio_del_producto = calcular_precio_final(100, 21)\n",
+    "print(f\"El precio final con impuestos es: {precio_del_producto}\")"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### **5. Parámetros Predeterminados (Opcionales)**"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Puedes asignar un valor por defecto a un parámetro. Si el usuario no proporciona ese dato al llamar la función, se usa el valor preestablecido. Esto hace que tus funciones sean más flexibles."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 5,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Reserva para 2 adultos en la mesa A1.\n",
+      "Reserva para 5 adultos en la mesa B4.\n"
+     ]
+    }
+   ],
+   "source": [
+    "def configurar_reserva(mesa, adultos=2):\n",
+    "    # Si no se especifica 'adultos', usará el valor predeterminado (2)\n",
+    "    print(f\"Reserva para {adultos} adultos en la mesa {mesa}.\")\n",
+    "    \n",
+    "# Usando el valor predeterminado (2 adultos)\n",
+    "configurar_reserva(\"A1\")\n",
+    "\n",
+    "# Sobrescribiendo el valor predeterminado (5 adultos)\n",
+    "configurar_reserva(\"B4\", 5)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### **6. Argumentos con Nombre (`Keyword Arguments`)**"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Cuando llamas a la función, puedes especificar los argumentos usando su nombre (`clave=valor`). Esto te permite enviar los datos en **cualquier orden**, lo cual es excelente para funciones con muchos parámetros, ¡evitando confusiones!"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 6,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Producto: Taza de Viaje | Precio: $15.50 | Stock: 50 unidades\n"
+     ]
+    }
+   ],
+   "source": [
+    "def crear_ficha_producto(nombre, precio, stock):\n",
+    "    print(f\"Producto: {nombre} | Precio: ${precio} | Stock: {stock} unidades\")\n",
+    "    \n",
+    "# Pasamos los argumentos por nombre, aunque el orden esté cambiado\n",
+    "crear_ficha_producto(stock=50, precio=15.50, nombre=\"Taza de Viaje\")"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### **7. Alcance de las Variables (`Scope`)**"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "El alcance define **dónde** una variable es visible y accesible. \n",
+    "* **Globales:** Se definen fuera de cualquier función y son accesibles en todas partes.\n",
+    "* **Locales:** Se definen dentro de una función y solo existen *mientras* esa función se está ejecutando. No se pueden acceder desde afuera."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 7,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Usando variable global dentro de la función: 3.14159\n"
+     ]
+    }
+   ],
+   "source": [
+    "# Variable Global\n",
+    "VALOR_GLOBAL = 3.14159\n",
+    "\n",
+    "def mostrar_global():\n",
+    "    # Las funciones pueden leer variables globales\n",
+    "    print(f\"Usando variable global dentro de la función: {VALOR_GLOBAL}\")\n",
+    "\n",
+    "mostrar_global()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 8,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Antes de la llamada: 10\n",
+      "Dentro de la función, la variable local es: 50\n",
+      "Después de la llamada (sigue siendo global): 10\n"
+     ]
+    }
+   ],
+   "source": [
+    "# Variable Local (no afecta a la global)\n",
+    "cantidad = 10\n",
+    "print(f\"Antes de la llamada: {cantidad}\")\n",
+    "\n",
+    "def procesar_cantidad():\n",
+    "    # Esta variable 'cantidad' es LOCAL, diferente a la global\n",
+    "    cantidad = 50\n",
+    "    print(f\"Dentro de la función, la variable local es: {cantidad}\")\n",
+    "\n",
+    "procesar_cantidad()\n",
+    "print(f\"Después de la llamada (sigue siendo global): {cantidad}\")"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### **8. Funciones `lambda`: Atajos Simples**"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Una función `lambda` es una pequeña función **anónima** (no tiene nombre) que se define en una sola línea y solo puede contener una única expresión. Es perfecta para operaciones sencillas o cuando necesitas pasar una función como argumento a otra función (como `map`, `filter`, o `sorted`)."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 9,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Temperaturas frescas (<= 25°C): [20, 22, 25]\n"
+     ]
+    }
+   ],
+   "source": [
+    "# Sintaxis:\n",
+    "# lambda argumentos : expresión_a_ejecutar\n",
+    "\n",
+    "# Ejemplo: Usar lambda con filter para encontrar temperaturas frescas\n",
+    "temperaturas = [28, 20, 31, 22, 25, 19, 30]\n",
+    "\n",
+    "# Definimos una lambda que devuelve True si x es menor o igual a 25\n",
+    "frescas = list(filter(lambda temp: temp <= 25, temperaturas))\n",
+    "\n",
+    "print(f\"Temperaturas frescas (<= 25°C): {frescas}\")"
+   ]
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.13.1"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 2
+}
